@@ -163,7 +163,7 @@ p { color: var(--text-light); margin-bottom: 1rem; }
     max-width: 100%;
     object-fit: contain;
     mix-blend-mode: multiply;
-    transform: scale(1.5); /* Make the logo 50% larger visually */
+    transform: scale(1.2); /* Make the logo slightly smaller than before */
     transform-origin: left center; /* Scale it from the left so it doesn't push right */
 }
 
@@ -560,11 +560,8 @@ p { color: var(--text-light); margin-bottom: 1rem; }
 }
 
 .footer-logo {
-    height: 70px; /* Increased from 40px for a larger logo */
+    height: 100px; /* Increased for a larger logo */
     margin-bottom: 20px;
-    background-color: white;
-    padding: 10px 20px; /* Adjusted padding to match the larger size */
-    border-radius: 5px;
     object-fit: contain;
     max-width: 100%;
 }
