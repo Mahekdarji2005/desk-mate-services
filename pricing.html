@@ -49,26 +49,299 @@
     <!-- Page Header -->
     <section class="page-header bg-light">
         <div class="container">
-            <h1>Pricing</h1>
-            <p>Flexible Plans Built Around Your Needs.</p>
+            <h1 style="font-size: 3.5rem; margin-bottom: 15px;">Pricing</h1>
+            <p style="font-size: 1.25rem;">Flexible Plans Built Around Your Needs.</p>
         </div>
     </section>
 
     <!-- Page Content -->
     <section class="page-content" style="padding-top: 40px;">
-        <div class="container" style="max-width: 900px; margin: 0 auto;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
             
-            <p style="font-size: 1.1rem; color: #444; margin-bottom: 30px;">No hidden fees, no long-term lock-ins &mdash; just transparent pricing that scales with your business.</p>
             
-            <div class="services-list-box-full" style="background: var(--bg-white); border-top: 4px solid var(--primary-color);">
-                <ul class="bullet-list" style="font-size: 1.05rem;">
-                    <li><strong>Starter Plan</strong> - Ideal for solopreneurs and small businesses needing part-time support</li>
-                    <li><strong>Growth Plan</strong> - Best for growing teams needing dedicated, full-time virtual assistance</li>
-                    <li><strong>Enterprise Plan</strong> - Custom solutions with multiple assistants across departments</li>
-                </ul>
+            
+            
+            
+            
+            <div id="region-selector" style="text-align: center; padding: 60px 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border: 1px solid #eaeaea;">
+                <h2 style="margin-bottom: 30px; color: var(--primary-color);">Please select your region to view pricing</h2>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="selectRegion('indian')" style="padding: 12px 40px; font-size: 1.1rem; min-width: 150px;">Indian</button>
+                    <button class="btn btn-outline" onclick="selectRegion('usa')" style="padding: 12px 40px; font-size: 1.1rem; min-width: 150px;">USA</button>
+                    <button class="btn btn-outline" onclick="selectRegion('others')" style="padding: 12px 40px; font-size: 1.1rem; min-width: 150px;">Others</button>
+                </div>
+            </div>
+            
+            <div id="pricing-content-area" style="display: none;">
+<div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;" id="pricing-toggles">
+                <button class="btn btn-primary" onclick="showPricing('indian')" id="btn-indian" style="padding: 8px 24px; min-width: 120px;">Indian</button>
+                <button class="btn btn-outline" onclick="showPricing('usa')" id="btn-usa" style="padding: 8px 24px; min-width: 120px;">USA</button>
+                <button class="btn btn-outline" onclick="showPricing('others')" id="btn-others" style="padding: 8px 24px; min-width: 120px;">Others</button>
+            </div>
+              <style>
+                .pricing-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 15px;
+                    margin-top: 30px;
+                }
+                .pricing-card {
+                    flex: 1;
+                    min-width: 180px;
+                    max-width: 210px;
+                    background: #fff;
+                    border: 1px solid #eee;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                    text-align: center;
+                    position: relative;
+                }
+                .pricing-header {
+                    background-color: var(--secondary-color, #f37920);
+                    color: white;
+                    padding: 15px 0;
+                    font-weight: 700;
+                    font-size: 1.2rem;
+                }
+                .pricing-price {
+                    background-color: #f7f7f7;
+                    padding: 20px 0;
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    color: #333;
+                }
+                .pricing-features {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+                .pricing-features li {
+                    padding: 12px 10px;
+                    font-size: 0.85rem;
+                    color: #555;
+                    border-bottom: 1px dashed #eee;
+                }
+                .pricing-features li:last-child {
+                    border-bottom: none;
+                }
+                .pricing-action {
+                    padding: 20px;
+                    background-color: #f9f9f9;
+                }
+                .pricing-btn {
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #222;
+                    color: #fff;
+                    text-decoration: none;
+                    border-radius: 4px;
+                    font-weight: 700;
+                    font-size: 0.85rem;
+                    transition: 0.3s;
+                }
+                .pricing-btn:hover {
+                    background-color: #000;
+                }
+                .pricing-btn-primary {
+                    background-color: #e55342;
+                }
+                .pricing-btn-primary:hover {
+                    background-color: #d14130;
+                }
+                .card-popular {
+                    transform: scale(1.05);
+                    z-index: 2;
+                    border: 2px solid var(--secondary-color, #f37920);
+                }
+                .popular-badge {
+                    background-color: #7d8b92;
+                    color: white;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    padding: 5px;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                }
+                @media (max-width: 768px) {
+                    .card-popular { transform: scale(1); margin-top: 20px; }
+                    .popular-badge { display: none; }
+                }
+            </style>
+            
+            <div class="pricing-container" id="pricing-table" style="display: none;">
+                <div class="pricing-card">
+                    <div class="pricing-header">Nano</div>
+                    <div class="pricing-price">$54.90</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>$10.98 per hour</li>
+                        <li>5 hours of Assistance</li>
+                        <li>-</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 2 hours per day usage</li>
+                    </ul>
+                    
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Small</div>
+                    <div class="pricing-price">$179.60</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>$8.98 per hour</li>
+                        <li>20 hours of Assistance</li>
+                        <li>Save 18.20% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 2 hours per day usage</li>
+                    </ul>
+                    
+                </div>
+                <div class="pricing-card">
+                    
+                    <div class="pricing-header">Basic</div>
+                    <div class="pricing-price">$319.20</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>$7.98 per hour</li>
+                        <li>40 hours of Assistance</li>
+                        <li>Save 36.40% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 4-8 hours per day usage</li>
+                    </ul>
+                    
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Advanced</div>
+                    <div class="pricing-price">$558.40</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>$6.98 per hour</li>
+                        <li>80 hours of Assistance</li>
+                        <li>Save 45.50% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 4-8 hours per day usage</li>
+                    </ul>
+                    
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Extreme</div>
+                    <div class="pricing-price">$956.80</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>$5.98 per hour</li>
+                        <li>160 hours of Assistance</li>
+                        <li>Save 54.60% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 4-8 hours per day usage</li>
+                    </ul>
+                    
+                </div>
             </div>
 
-            <p style="font-style: italic; font-size: 1.1rem; color: #555; margin-top: 20px;">Get a free trial before you commit &mdash; see the DeskMate difference risk-free.</p>
+
+            <div class="pricing-container" id="pricing-empty" style="display: flex;">
+                <div class="pricing-card">
+                    <div class="pricing-header">Nano</div>
+                    <div class="pricing-price">₹8,000/-</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>₹800 per hour</li>
+                        <li>10 hours of Assistance</li>
+                        <li>-</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 2 hours per day usage</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Small</div>
+                    <div class="pricing-price">₹15,000/-</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>₹750 per hour</li>
+                        <li>20 hours of Assistance</li>
+                        <li>Save 6.25% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 2 hours per day usage</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Basic</div>
+                    <div class="pricing-price">₹28,000/-</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>₹700 per hour</li>
+                        <li>40 hours of Assistance</li>
+                        <li>Save 12.5% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 4-8 hours per day usage</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Advanced</div>
+                    <div class="pricing-price">₹52,000/-</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>₹650 per hour</li>
+                        <li>80 hours of Assistance</li>
+                        <li>Save 18.75% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 4-8 hours per day usage</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">Extreme</div>
+                    <div class="pricing-price">₹99,000/-</div>
+                    <ul class="pricing-features">
+                        <li>Dedicated Virtual Assistant</li>
+                        <li>₹618.75 per hour</li>
+                        <li>160 hours of Assistance</li>
+                        <li>Save 22.6% !</li>
+                        <li>Email and Phone Support</li>
+                        <li>At least 4-8 hours per day usage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <script>
+                function showPricing(region) {
+                    var btnIndian = document.getElementById('btn-indian');
+                    var btnUsa = document.getElementById('btn-usa');
+                    var btnOthers = document.getElementById('btn-others');
+                    var table = document.getElementById('pricing-table'); // USA/Others
+                    var empty = document.getElementById('pricing-empty'); // Indian
+                    
+                    btnIndian.className = 'btn btn-outline';
+                    btnUsa.className = 'btn btn-outline';
+                    btnOthers.className = 'btn btn-outline';
+                    
+                    if (region === 'indian') {
+                        btnIndian.className = 'btn btn-primary';
+                        table.style.display = 'none';
+                        empty.style.display = 'flex';
+                    } else if (region === 'usa') {
+                        btnUsa.className = 'btn btn-primary';
+                        table.style.display = 'flex';
+                        empty.style.display = 'none';
+                    } else {
+                        btnOthers.className = 'btn btn-primary';
+                        table.style.display = 'flex';
+                        empty.style.display = 'none';
+                    }
+                }
+                
+                function selectRegion(region) {
+                    document.getElementById('region-selector').style.display = 'none';
+                    document.getElementById('pricing-content-area').style.display = 'block';
+                    var toggles = document.getElementById('pricing-toggles');
+                    if (toggles) toggles.style.display = 'none';
+                    showPricing(region);
+                }
+            </script>
+
+            </div>
+
+            
             
         </div>
     </section>
@@ -128,7 +401,7 @@
             </div>
             <div class="footer-col contact-col">
                 <h4>Contact Us</h4>
-                <p><i class="fa-solid fa-phone"></i> +91 9898143719/9316049623</p>
+                <p><i class="fa-solid fa-phone"></i> <span style="white-space: nowrap;">+91 9898143719 / +91 9316049623</span></p>
                 <p><i class="fa-solid fa-envelope"></i> services.deskmate@gmail.com</p>
                 <p><a href="https://wa.me/919898143719" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat</a></p>
                 <a href="book-a-call.html" class="btn btn-primary btn-sm mt-3"><i class="fa-solid fa-calendar-days"></i> Book a Call /
